@@ -398,24 +398,10 @@ static int logicport_startup(void)
 	if (ret < 0)
 		return -1;
 
-	//logicport_purge_buffers();
-	//if (ret < 0)
-	//	return -1;
-
 	ret = logicport_control(LOGICPORT_SET_BIT_MODE,
 				LOGICPORT_BITBANG_3_LSB);
 	if (ret < 0)
 		return -1;
-
-	//data[0] = 0x00;
-	//ret = logicport_write(data, 1, LOGICPORT_SILENT);
-	//if (ret < 0)
-	//	return -1;
-
-	//data[0] = 0x04;
-	//ret = logicport_write(data, 1, LOGICPORT_SILENT);
-	//if (ret < 0)
-	//	return -1;
 
 	ret = logicport_flash_fpga();
 	if (ret < 0)
@@ -431,10 +417,6 @@ static int logicport_startup(void)
 	ret = logicport_control(LOGICPORT_SET_BIT_MODE, LOGICPORT_BITMODE_RESET);
 	if (ret < 0)
 		return -1;
-
-	//ret = logicport_reset_settings();
-	//if (ret < 0)
-	//	return -1;
 
 	logicport_purge_buffers();
 	if (ret < 0)
@@ -459,10 +441,6 @@ static int logicport_startup(void)
 	ret = logicport_write(data, 1, LOGICPORT_SILENT);
 	if (ret < 0)
 		return -1;
-
-	//ret = logicport_control(LOGICPORT_READ_EPROM, 0x3f);
-	//if (ret < 0)
-	//	return -1;
 
 	/* Write first 'C' message: C3 00 20 000 (Request packet number) */
 	data[0] = 0xC3; data[1] = 0x00; data[2] = 0x20;
